@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bluetooth + YouTube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 2em;">
+  <h1>Let's Get Started</h1>
+
+  <button onclick="connectBluetooth()" style="padding: 1em; font-size: 1.2em;">🔊 Connect to Bluetooth Device</button>
+
+  <p>or</p>
+
+  <button onclick="openYouTube()" style="padding: 1em; font-size: 1.2em;">▶️ Watch Video</button>
+
+  <script>
+    function connectBluetooth() {
+      navigator.bluetooth.requestDevice({
+        acceptAllDevices: true
+        // Optional: Add filters here if you know the device name or services
+        // filters: [{ name: 'MySpeaker' }]
+      })
+      .then(device => device.gatt.connect())
+      .then(server => {
+        alert("Connected to device!");
+      })
+      .catch(error => {
+        alert("Bluetooth connection failed: " + error);
+      });
+    }
+
+    function openYouTube() {
+      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+  </script>
+</body>
+</html>
